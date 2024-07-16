@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faceit-Helper</title>
+
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="shortcut icon" href="../static/images/icon.svg" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <div class="fill"></div>
+        <div class="main-container">
+
+            <div class="header">
+                <div class="index-url">
+                    <a href="http://127.0.0.1:5000">F-H</a>
+                </div>
+
+                <form class="form" method="post" action="{{ url_for('index') }}">
+                    <input style="font-size: 16px" class="input" name="search_value" placeholder="Enter player Faceit Nickname/Steam Url/SteamID/SteamID64">
+                    <button class="button" type="submit"></button>
+                </form>
+
+                <div class="nav-items">
+                    <div class="nav-item">
+                        obs-overlay
+                    </div>
+
+                    <div class="nav-item">
+                        tg-bot
+                    </div>
+
+                    <div class="nav-item">
+                        leaderbord
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="main">
+
+                <div class="live-users">
+                    <div class="just-text">
+                        Live users:
+                    </div>
+                    <div class="live-line">
+                        <pre class="live-text-line">
+                            nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp; nickname, &nbsp;&nbsp;&nbsp;
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="content-box">
+
+                    <div class="telegram-bot">
+
+                        <div class="tg-box">
+                            <div class="tg-header">
+                                <div class="tg-header-back"><img src="../static/images/back.svg" alt=""></div>
+                                <div class="tg-header-avatar"><div class="tg-header-svg"> <img src="../static/images/icon.svg" alt=""> </div></div>
+                                <div class="tg-header-nickname-box">
+                                    <div class="tg-header-nickname">Faceit-Helper</div>
+                                    <div class="tg-header-bot">bot</div>
+                                </div>
+                                <div class="tg-header-dot-menu"><img src="../static/images/dot-menu.svg" alt=""></div>
+                            </div>
+                            <div class="tg-chat">
+                                <div class="tg-chat-text">
+                                    <div class="tg-chat-start">
+                                        /start
+                                    </div>
+                                    <div class="tg-chat-time">
+                                        13:37
+                                    </div>
+                                    <div class="tg-chat-check-mark"><img src="../static/images/check-mark.svg" alt=""></div>
+                                </div>
+                            </div>
+                            <div class="tg-footer">
+                                <div class="tg-footer-menu">
+                                    <div class="tg-footer-menu-box">
+                                        <img src="../static/images/menu-menu.svg" alt="">
+                                        Menu
+                                    </div>
+                                </div>
+                                <div class="tg-footer-smile-svg"><img src="../static/images/smile.svg" alt=""></div>
+                                <div class="tg-footer-write">
+                                    Message
+                                </div>
+                                <div class="tg-footer-file"><img src="../static/images/file.svg" alt=""></div>
+                                <div class="tg-footer-mic"><img src="../static/images/mic.svg" alt=""></div>
+
+                            </div>
+                        </div>
+
+                        <div class="telegram-bot-button">
+                            <div class="telegram-butoon">
+                             Telegram BOT
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faceit-top">
+
+                        <div id="eu-ranking-container" class="eu-elo-top">
+                            <div class="names">
+                                <div class="names-rank">EU</div>
+                                <div class="names-player">Player</div>
+                                <div class="names-elo">Elo</div>
+                            </div>
+                        
+                            <div class="top-20-elo-scroll-list">
+                                {% for player in global_eu_ranking %}
+                                <div class="top20elo-item">
+                                    <div class="top20elo-ranks">
+                                        {% if player.rank == "1" %}
+                                        <div class="top20elo-rank-1">
+                                            <pre>#</pre>{{ player.position }}
+                                            <img title="Faceit Challenger 1" class="fc-1" src="../static/images/No.1.svg" alt="gold" width="20" height="20">
+                                        </div>
+                                        {% elif player.rank == "2" %}
+                                        <div class="top20elo-rank-2">
+                                            <pre>#</pre>{{ player.position }}
+                                            <img title="Faceit Challenger 2" class="fc-2" src="../static/images/No.2.svg" alt="silver" width="20" height="20">
+                                        </div>
+                                        {% elif player.rank == "3" %}
+                                        <div class="top20elo-rank-3">
+                                            <pre>#</pre>{{ player.position }}
+                                            <img title="Faceit Challenger 3" class="fc-3" src="../static/images/No.3.svg" alt="bronze" width="20" height="20">
+                                        </div>
+                                        {% elif player.rank == "4-9" %}
+                                        <div class="top20elo-rank-4-9">
+                                            <pre>#</pre>{{ player.position }}
+                                            <img title="Faceit Challenger 4-9" class="fc-4-9" src="../static/images/No.4-1000.svg" alt="wood" width="20" height="20">
+                                        </div>
+                                        {% elif player.rank == "9-1000" %}
+                                        <div class="top20elo-rank-9-1000">
+                                            <pre>#</pre>{{ player.position }}
+                                            <img title="Faceit Challenger 9-1000" class="fc-9-1000" src="../static/images/No.4-1000.svg" alt="wood" width="20" height="20">
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                        
+                                    <div class="top20elo-nickname">
+                                        <img class="top20elo-flag" src="{{ url_for('static', filename='flags/' + player.country.lower() + '.svg') }}" alt="{{ player.country }}" width="20" height="15">
+                                        <a href="http://127.0.0.1:5000/{{ player.nickname }}">{{ player.nickname }}</a>
+                                    </div>
+                                    
+                                    <div class="top20elo-elo">
+                                        {{ player.faceit_elo }}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div id="eu-loading"></div>
+                        </div>
+                        
+                        <div class="americas">
+                            <div id="na-ranking-container" class="na-elo-top">
+                                <div class="names">
+                                    <div class="names-rank">NA</div>
+                                    <div class="names-player">Player</div>
+                                    <div class="names-elo">Elo</div>
+                                </div>
+                        
+                                <div class="top-20-elo-scroll-list">
+                                    {% for player in global_na_ranking %}
+                                    <div class="top20elo-item">
+                                        <div class="top20elo-ranks">
+                                            {% if player.rank == "1" %}
+                                            <div class="top20elo-rank-1">
+                                                <pre>#</pre>{{ player.position }}
+                                                <img title="Faceit Challenger 1" class="fc-1" src="../static/images/No.1.svg" alt="gold" width="20" height="20">
+                                            </div>
+                                            {% elif player.rank == "2" %}
+                                            <div class="top20elo-rank-2">
+                                                <pre>#</pre>{{ player.position }}
+                                                <img title="Faceit Challenger 2" class="fc-2" src="../static/images/No.2.svg" alt="silver" width="20" height="20">
+                                            </div>
+                                            {% elif player.rank == "3" %}
+                                            <div class="top20elo-rank-3">
+                                                <pre>#</pre>{{ player.position }}
+                                                <img title="Faceit Challenger 3" class="fc-3" src="../static/images/No.3.svg" alt="bronze" width="20" height="20">
+                                            </div>
+                                            {% elif player.rank == "4-9" %}
+                                            <div class="top20elo-rank-4-9">
+                                                <pre>#</pre>{{ player.position }}
+                                                <img title="Faceit Challenger 4-9" class="fc-4-9" src="../static/images/No.4-1000.svg" alt="wood" width="20" height="20">
+                                            </div>
+                                            {% elif player.rank == "9-1000" %}
+                                            <div class="top20elo-rank-9-1000">
+                                                <pre>#</pre>{{ player.position }}
+                                                <img title="Faceit Challenger 9-1000" class="fc-9-1000" src="../static/images/No.4-1000.svg" alt="wood" width="20" height="20">
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                        
+                                        <div class="top20elo-nickname">
+                                            <img class="top20elo-flag" src="{{ url_for('static', filename='flags/' + player.country.lower() + '.svg') }}" alt="{{ player.country }}" width="20" height="15">
+                                            <a href="http://127.0.0.1:5000/{{ player.nickname }}">{{ player.nickname }}</a>
+                                        </div>
+                                        
+                                        <div class="top20elo-elo">
+                                            {{ player.faceit_elo }}
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div id="na-loading"></div>
+                            </div>
+                        
+                        <div id="sa-ranking-container" class="sa-elo-top">
+                                <div class="names">
+                                    <div class="names-rank">SA</div>
+                                    <div class="names-player">Player</div>
+                                    <div class="names-elo">Elo</div>
+                                </div>
+                        
+                                <div class="top-20-elo-scroll-list">
+                                    {% for player in global_sa_ranking %}
+                                    <div class="top20elo-item">
+                                        <div class="top20elo-ranks">
+                                            {% if player.rank == "1" %}
+                                            <div class="top20elo-rank-1">
+                                                <pre>#</pre>{{ player.position }}
+                                                <img title="Faceit Challenger 1" class="fc-1" src="../static/images/No.1.svg" alt="gold" width="20" height="20">
+                                            </div>
+                                            {% elif player.rank == "2" %}
+                                            <div class="top20elo-rank-2">
+                                                <pre>#</pre>{{ player.position }}
+                                                <img title="Faceit Challenger 2" class="fc-2" src="../static/images/No.2.svg" alt="silver" width="20" height="20">
+                                            </div>
+                                            {% elif player.rank == "3" %}
+                                            <div class="top20elo-rank-3">
+                                                <pre>#</pre>{{ player.position }}
+                                                <img title="Faceit Challenger 3" class="fc-3" src="../static/images/No.3.svg" alt="bronze" width="20" height="20">
+                                            </div>
+                                            {% elif player.rank == "4-9" %}
+                                            <div class="top20elo-rank-4-9">
+                                                <pre>#</pre>{{ player.position }}
+                                                <img title="Faceit Challenger 4-9" class="fc-4-9" src="../static/images/No.4-1000.svg" alt="wood" width="20" height="20">
+                                            </div>
+                                            {% elif player.rank == "9-1000" %}
+                                            <div class="top20elo-rank-9-1000">
+                                                <pre>#</pre>{{ player.position }}
+                                                <img title="Faceit Challenger 9-1000" class="fc-9-1000" src="../static/images/No.4-1000.svg" alt="wood" width="20" height="20">
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                        
+                                        <div class="top20elo-nickname">
+                                            <img class="top20elo-flag" src="{{ url_for('static', filename='flags/' + player.country.lower() + '.svg') }}" alt="{{ player.country }}" width="20" height="15">
+                                            <a href="http://127.0.0.1:5000/{{ player.nickname }}">{{ player.nickname }}</a>
+                                        </div>
+                                        
+                                        <div class="top20elo-elo">
+                                            {{ player.faceit_elo }}
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div id="sa-loading"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+
+                <div class="footer-left-content">
+                    <p>All times on the site are GMT +3</p>
+                    <p>© 2024 Faceit-Helper.com ALL RIGHTS RESERVED.</p>
+                    <p>Faceit Helper is not affiliated with Valve or FACEIT. All Trademarks referred to are the property of their respective owners.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="fill"></div>
+    </div>
+    <script src="../static/ts/index.js"></script>
+
+</body>
+</html>
