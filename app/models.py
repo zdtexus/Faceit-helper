@@ -15,12 +15,14 @@ from functools import lru_cache
 cache = TTLCache(maxsize=100, ttl=300) 
 
 class Player:
-    def __init__(self, player_id, nickname, avatar, country, games, faceit_url):
+    def __init__(self, player_id, nickname, avatar, country, games, faceit_url, position, faceit_elo):
         self.player_id = player_id
         self.nickname = nickname
         self.avatar = avatar
+        self.position = position
         self.country = country
         self.games = games
+        self.faceit_elo = faceit_elo
         self.faceit_url = faceit_url
 
     @staticmethod
@@ -77,6 +79,13 @@ class Player:
     def get_global_sa_ranking(limit=100, offset=0):
         return Player.get_global_ranking('SA', limit, offset)
 
+    @lru_cache(maxsize=128)
+    def get_global_sea_ranking(limit=100, offset=0):
+        return Player.get_global_ranking('SEA', limit, offset)
+
+    @lru_cache(maxsize=128)
+    def get_global_oce_ranking(limit=100, offset=0):
+        return Player.get_global_ranking('OCE', limit, offset)
 
 def get_steam_vanity_url(url):
     """ Получение части URL SteamID из профиля Steam """

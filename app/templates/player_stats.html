@@ -525,10 +525,10 @@
                                         <p>{{ match.stats.Map.replace('de_', '') }}</p>
                                     </div>
                                     <div class="match-score">
-                                        {% if match.stats.Result == "1" %}
+                                        {% if match.stats.Result == "2" %}
                                             <div class="match-result-loss">loss</div>
                                             <p>{{ match.stats.Score }}</p>
-                                        {% elif match.stats.Result == "0" %}
+                                        {% elif match.stats.Result == "1" %}
                                             <div class="match-result-win">Win</div>
                                             <p>{{ match.stats.Score }}</p>
                                         {% else %}
@@ -569,9 +569,9 @@
     
                                 </div>
                         
-                                {% if match.stats.Result == "1" %}
+                                {% if match.stats.Result == "0" %}
                                     <div class="match-result-loss-border"></div>
-                                {% elif match.stats.Result == "0" %}
+                                {% elif match.stats.Result == "1" %}
                                     <div class="match-result-win-border"></div>
                                 {% else %}
                         

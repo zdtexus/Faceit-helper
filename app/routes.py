@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, jsonify
 from requests.exceptions import HTTPError
 from app import app
-from app.models import Player, search_by_steamid_64, get_player_stats, format_date, calculate_averages, calculate_cs2_statistics, format_time_since
+from app.models import Player, get_player_stats, search_by_steamid_64, format_date, calculate_averages, calculate_cs2_statistics, format_time_since
 
 class PlayerView:
     def __init__(self):
