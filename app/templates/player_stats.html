@@ -525,7 +525,7 @@
                                         <p>{{ match.stats.Map.replace('de_', '') }}</p>
                                     </div>
                                     <div class="match-score">
-                                        {% if match.stats.Result == "2" %}
+                                        {% if match.stats.Result == "0" %}
                                             <div class="match-result-loss">loss</div>
                                             <p>{{ match.stats.Score }}</p>
                                         {% elif match.stats.Result == "1" %}
