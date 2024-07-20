@@ -14,8 +14,8 @@ start_markup = ReplyKeyboardMarkup(
 )
 
 select_region_markup = ReplyKeyboardMarkup(
-    [[KeyboardButton("/EU"), KeyboardButton("/NA")],
-     [KeyboardButton("/SA"), KeyboardButton("/SEA"), KeyboardButton("/OCE")]],
+    [[KeyboardButton("/eu"), KeyboardButton("/na")],
+     [KeyboardButton("/sa"), KeyboardButton("/sea"), KeyboardButton("/oce")]],
     resize_keyboard=True
 )
 
@@ -97,15 +97,15 @@ async def add_more_20_player_command(update: Update, context: ContextTypes.DEFAU
     offset += 20
     context.user_data['offset'] = offset
 
-    if region == 'EU':
+    if region == 'eu':
         rankings = Player.get_global_eu_ranking(limit=20, offset=offset)
-    elif region == 'NA':
+    elif region == 'na':
         rankings = Player.get_global_na_ranking(limit=20, offset=offset)
-    elif region == 'SA':
+    elif region == 'sa':
         rankings = Player.get_global_sa_ranking(limit=20, offset=offset)
-    elif region == 'SEA':
+    elif region == 'sea':
         rankings = Player.get_global_sea_ranking(limit=20, offset=offset)
-    elif region == 'OCE':
+    elif region == 'oce':
         rankings = Player.get_global_oce_ranking(limit=20, offset=offset)
     else:
         await update.message.reply_text('Region not recognized.', reply_markup=ReplyKeyboardRemove())
@@ -165,31 +165,31 @@ async def top_players_command(update: Update, context: ContextTypes.DEFAULT_TYPE
     )
 
 async def eu_top_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data['region'] = 'EU'
+    context.user_data['region'] = 'eu'
     context.user_data['offset'] = 0 
     rankings = Player.get_global_eu_ranking(limit=20)
     await output_top(update, context, rankings, region='EU')
 
 async def na_top_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data['region'] = 'NA'
+    context.user_data['region'] = 'na'
     context.user_data['offset'] = 0 
     rankings = Player.get_global_na_ranking(limit=20)
     await output_top(update, context, rankings, region='NA')
 
 async def sa_top_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data['region'] = 'SA'
+    context.user_data['region'] = 'sa'
     context.user_data['offset'] = 0 
     rankings = Player.get_global_sa_ranking(limit=20)
     await output_top(update, context, rankings, region='SA')
 
 async def sea_top_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data['region'] = 'SEA'
+    context.user_data['region'] = 'sea'
     context.user_data['offset'] = 0 
     rankings = Player.get_global_sea_ranking(limit=20)
     await output_top(update, context, rankings, region='SEA')
 
 async def oce_top_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data['region'] = 'OCE'
+    context.user_data['region'] = 'oce'
     context.user_data['offset'] = 0 
     rankings = Player.get_global_oce_ranking(limit=20)
     await output_top(update, context, rankings, region='OCE')
@@ -201,8 +201,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text: str = update.message.text
 
     if text:
-        await player_info(update, context, text)
         print(f'User ({update.message.id}) in {message_type}: "{text}"')
+        await player_info(update, context, text)
 
 
 # Errors
@@ -219,11 +219,11 @@ if __name__ == '__main__':
     app.add_handler(CommandHandler('help', help_command))
     app.add_handler(CommandHandler('find_player', find_player_command))
     app.add_handler(CommandHandler('top_players', top_players_command))
-    app.add_handler(CommandHandler('EU', eu_top_command))
-    app.add_handler(CommandHandler('NA', na_top_command))
-    app.add_handler(CommandHandler('SA', sa_top_command))
-    app.add_handler(CommandHandler('SEA', sea_top_command))
-    app.add_handler(CommandHandler('OCE', oce_top_command))
+    app.add_handler(CommandHandler('eu', eu_top_command))
+    app.add_handler(CommandHandler('na', na_top_command))
+    app.add_handler(CommandHandler('sa', sa_top_command))
+    app.add_handler(CommandHandler('sea', sea_top_command))
+    app.add_handler(CommandHandler('oce', oce_top_command))
     app.add_handler(CommandHandler('add_more_20_player', add_more_20_player_command))
     app.add_handler(CommandHandler('back', back_command))
     app.add_handler(CommandHandler('last_10_avg', last_10_avg_command))
